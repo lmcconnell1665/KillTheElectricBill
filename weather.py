@@ -45,7 +45,7 @@ def get_weather():
     shortForecast = json_data['properties']['periods'][0]['shortForecast']
     detailedForecast = json_data['properties']['periods'][0]['detailedForecast']
 
-    logger.info(f'Outdoor temperature is {temp}.')
+    logger.info(f'Outdoor temperature is {temp} fahrenheit.')
 
     query = f"insert into weather_data (forecast_updated, forecast_for, temp, wind_speed, wind_direction, icon, short_forecast, detailed_forecast) values ('{updatedTime}', '{forecastFor}', {temp}, '{windSpeed}', '{windDirection}', '{icon}', '{shortForecast}', '{detailedForecast}');"
     logger.debug(f'Returning query: {query}')

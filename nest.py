@@ -23,11 +23,11 @@ fh.setFormatter(formatter)
 logger.addHandler(ch)
 logger.addHandler(fh)
 
-project_id = os.getenv("PROJECT_ID")
-client_id = os.getenv("CLIENT_ID")
-client_secret = os.getenv("CLIENT_SECRET")
+project_id = os.getenv('PROJECT_ID')
+client_id = os.getenv('CLIENT_ID')
+client_secret = os.getenv('CLIENT_SECRET')
 redirect_uri = 'https://www.google.com'
-device_0_name = os.getenv("TSTAT_DEVICE_NAME")
+device_0_name = os.getenv('TSTAT_DEVICE_NAME')
 
 def get_nest_status():    
     with open('access_token.txt', 'r') as file:
@@ -84,7 +84,7 @@ def get_nest_status():
     hvac = response_json['traits']['sdm.devices.traits.ThermostatHvac']['status']
     setpoint = response_json['traits']['sdm.devices.traits.ThermostatTemperatureSetpoint']['heatCelsius']
 
-    logger.info(f'Indoor temperature is {temperature}.')
+    logger.info(f'Indoor temperature is {temperature} celsius.')
 
     query = f"insert into nest_data (humidity, temperature, fan, mode, eco, hvac, setpoint) values ({humidity}, {temperature}, '{fan}', '{mode}', '{eco}', '{hvac}', {setpoint});"
     logger.debug(f'Returning query: {query}')

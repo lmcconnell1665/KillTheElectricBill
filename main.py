@@ -58,13 +58,12 @@ def save_data(query):
             cursor.execute(query)
             logger.info(f'SQL query successfully run.')
 
-        except pyodbc.ProgrammingError as e:
+        except:
             logger.error(f"Error running query: {query}")
-            logger.error(e)
 
 
 if __name__ == '__main__':
     nest_query = get_nest_status()
-    save_data(nest_query)
     weather_query = get_weather()
+    save_data(nest_query)
     save_data(weather_query)
